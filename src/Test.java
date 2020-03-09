@@ -6,6 +6,7 @@ class Test {
         createInstance();
         parseTest1();
         parseTest2();
+        parseTest3();
     }
 
     private static void createInstance() {
@@ -30,6 +31,15 @@ class Test {
         check("ParseTest2-2", parser.getValue("b"), "");
         check("ParseTest2-3", parser.getValue("c"), "lemon");
         check("ParseTest2-4", parser.getValue("d"), "");
+    }
+
+    private static void parseTest3() {
+        String values[] = {"marron", "kiwi", "dragonfruit"};
+        String args[] = {"marron", "kiwi", "-a", "orange", "dragonfruit"};
+        ArgsParser parser = new ArgsParser(args);
+        int no = 1;
+        for(String value: parser.getNonMappedValues())
+            check("ParseTest3-"+(no++), value, values[no-2]);
     }
 
     private static void check(String msg, boolean a) {

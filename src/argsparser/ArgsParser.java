@@ -44,6 +44,13 @@ public class ArgsParser {
     }
 
     /**
+     * タグに紐付けられなかった値の配列を返す
+     */
+    public String[] getNonMappedValues() {
+        return outOfGroup.toArray(String[]::new);
+    }
+
+    /**
      * argsのパースを行う
      */
     private void parse() {
@@ -59,9 +66,10 @@ public class ArgsParser {
                     matchTable.put(exclusionPrefix(arg), "");
                 } else {
                     matchTable.put(exclusionPrefix(arg), next);
+                    ++ idx;
                 }
             } else {
-                outOfGroup.add(exclusionPrefix(arg));
+                outOfGroup.add(arg);
             }
         }
     }
