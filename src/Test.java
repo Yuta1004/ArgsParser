@@ -5,6 +5,7 @@ class Test {
     public static void main(String[] args) {
         createInstance();
         parseTest1();
+        parseTest2();
     }
 
     private static void createInstance() {
@@ -20,6 +21,15 @@ class Test {
         check("ParseTest1-2", parser.hasTag("b"), true);
         check("ParseTest1-3", parser.hasTag("-a"), false);
         check("ParseTest1-4", parser.hasTag("c"), false);
+    }
+
+    private static void parseTest2() {
+        String args[] = {"-a", "pineapple", "melon", "--b", "--c", "lemon"};
+        ArgsParser parser = new ArgsParser(args);
+        check("ParseTest2-1", parser.getValue("a"), "pineapple");
+        check("ParseTest2-2", parser.getValue("b"), "");
+        check("ParseTest2-3", parser.getValue("c"), "lemon");
+        check("ParseTest2-4", parser.getValue("d"), "");
     }
 
     private static <T> void check(String msg, T a, T b) {

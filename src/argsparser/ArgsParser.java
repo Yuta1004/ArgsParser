@@ -33,6 +33,17 @@ public class ArgsParser {
     }
 
     /**
+     * 指定タグに対応する値を返す
+     * 存在しない場合は空文字を返す
+     */
+    public String getValue(String tag) {
+        String value = matchTable.get(tag);
+        if(value == null)
+            return "";
+        return value;
+    }
+
+    /**
      * argsのパースを行う
      */
     private void parse() {
