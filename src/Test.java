@@ -16,7 +16,10 @@ class Test {
     private static void parseTest1() {
         String args[] = {"-a", "banana", "--b", "apple"};
         ArgsParser parser = new ArgsParser(args);
-        check("ParseTest1", true, true);
+        check("ParseTest1-1", parser.hasTag("a"), true);
+        check("ParseTest1-2", parser.hasTag("b"), true);
+        check("ParseTest1-3", parser.hasTag("-a"), false);
+        check("ParseTest1-4", parser.hasTag("c"), false);
     }
 
     private static <T> void check(String msg, T a, T b) {

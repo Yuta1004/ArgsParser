@@ -24,6 +24,15 @@ public class ArgsParser {
     }
 
     /**
+     * 指定タグがargs内に存在していたかを返す
+     *
+     * @param tag タグ
+     */
+    public boolean hasTag(String tag) {
+        return matchTable.containsKey(tag);
+    }
+
+    /**
      * argsのパースを行う
      */
     private void parse() {
@@ -52,7 +61,7 @@ public class ArgsParser {
      * @param target 検証対象文字列
      */
     private boolean checkPrefix(String target) {
-        String prefixs[] = {"-", "--"};
+        String prefixs[] = {"--", "-"};
         for(String prefix: prefixs) {
             if(target.startsWith(prefix))
                 return true;
@@ -66,7 +75,7 @@ public class ArgsParser {
      * @param target 対象文字列
      */
     private String exclusionPrefix(String target) {
-        String prefixs[] = {"-", "--"};
+        String prefixs[] = {"--", "-"};
         for(String prefix: prefixs) {
             if(target.startsWith(prefix))
                 return target.substring(prefix.length(), target.length());
