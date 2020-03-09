@@ -49,6 +49,20 @@ public class ArgsParser {
     }
 
     /**
+     * 接頭語がパース対象のものかチェック
+     *
+     * @param target 検証対象文字列
+     */
+    private boolean checkPrefix(String target) {
+        String prefixs[] = {"-", "--"};
+        for(String prefix: prefixs) {
+            if(target.startsWith(prefix))
+                return true;
+        }
+        return false;
+    }
+
+    /**
      * 接頭語を除いた文字列を返す
      *
      * @param target 対象文字列
