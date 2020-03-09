@@ -5,14 +5,13 @@ OPTS :=
 JAVA_OPTS = $(OPTS) -classpath bin
 JAVAC_OPTS := $(OPTS) -sourcepath src -d bin
 
+exec:
+	$(call BUILD_AND_RUN, src/Main.java, Main)
 
-make:
-	make build
-	make run
+test:
+	$(call BUILD_AND_RUN, src/Test.java, Test)
 
-run:
-	$(JAVA) $(JAVA_OPTS) Main
-
-build: src/Main.java
-	$(JAVAC) $(JAVAC_OPTS) src/Main.java
-
+define BUILD_AND_RUN
+	$(JAVAC) $(JAVAC_OPTS) $1
+	$(JAVA) $(JAVA_OPTS) $1
+endef
