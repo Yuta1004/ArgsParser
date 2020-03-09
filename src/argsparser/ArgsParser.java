@@ -1,3 +1,5 @@
+package argsparser;
+
 /**
  * ArgsParser
  * 引数をパースして扱いやすくする
