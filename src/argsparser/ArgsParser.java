@@ -1,5 +1,7 @@
 package argsparser;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.management.BadStringOperationException;
 
 /**
@@ -9,12 +11,16 @@ import javax.management.BadStringOperationException;
 public class ArgsParser {
 
     private String args[];
+    private ArrayList<String> outOfGroup;
+    private HashMap<String, String> matchTable;
 
     /**
      * コンストラクタ
      */
     public ArgsParser(String[] args) {
         this.args = args;
+        outOfGroup = new ArrayList<String>();
+        matchTable = new HashMap<String, String>();
     }
 
     /**
