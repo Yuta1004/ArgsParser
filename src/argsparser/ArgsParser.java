@@ -32,16 +32,16 @@ public class ArgsParser {
 
         for(int idx = 0; idx < args.length; ++ idx) {
             // fetch
-            String arg = args[idx];
+            String arg = args[idx], next = "";
+            if(idx < args.length-1)
+                next = args[idx+1];
 
             // check prefix
             for(String prefix: prefixs) {
                 if(arg.startsWith(prefix)) {
                     String key = exclusionPrefix(arg, prefix.length());
-                    if(idx < args.length-1) {
-                        matchTable.put(key, args[idx+1]);
-                        ++ idx;
-                    }
+                    matchTable.put(key, next);
+                    ++ idx;
                 } else {
                     outOfGroup.add(arg);
                 }
