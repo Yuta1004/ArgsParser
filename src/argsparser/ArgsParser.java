@@ -21,6 +21,32 @@ public class ArgsParser {
         this.args = args;
         outOfGroup = new ArrayList<String>();
         matchTable = new HashMap<String, String>();
+        parse();
+    }
+
+    /**
+     * argsのパースを行う
+     */
+    private void parse() {
+        String prefixs[] = {"-", "--"};
+
+        for(int idx = 0; idx < args.length; ++ idx) {
+            // fetch
+            String arg = args[idx];
+
+            // check prefix
+            for(String prefix: prefixs) {
+                if(arg.startsWith(prefix)) {
+                    String key = exclusionPrefix(arg, prefix.length());
+                    if(idx < args.length-1) {
+                        matchTable.put(key, args[idx+1]);
+                        ++ idx;
+                    }
+                } else {
+                    outOfGroup.add(arg);
+                }
+            }
+        }
     }
 
     /**
