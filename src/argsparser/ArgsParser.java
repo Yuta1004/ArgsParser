@@ -66,10 +66,14 @@ public class ArgsParser {
      * 接頭語を除いた文字列を返す
      *
      * @param target 対象文字列
-     * @param len 接頭語の長さ
      */
-    private String exclusionPrefix(String target, int len) {
-        return target.substring(len, target.length());
+    private String exclusionPrefix(String target) {
+        String prefixs[] = {"-", "--"};
+        for(String prefix: prefixs) {
+            if(target.startsWith(prefix))
+                return target.substring(prefix.length(), target.length());
+        }
+        return "";
     }
 
 }
