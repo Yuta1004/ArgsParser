@@ -17,10 +17,10 @@ class Test {
     private static void parseTest1() {
         String args[] = {"-a", "banana", "--b", "apple"};
         ArgsParser parser = new ArgsParser(args);
-        check("ParseTest1-1", parser.hasTag("a"), true);
-        check("ParseTest1-2", parser.hasTag("b"), true);
-        check("ParseTest1-3", parser.hasTag("-a"), false);
-        check("ParseTest1-4", parser.hasTag("c"), false);
+        check("ParseTest1-1", parser.hasTag("a"));
+        check("ParseTest1-2", parser.hasTag("b"));
+        check("ParseTest1-3", parser.hasTag("-a"));
+        check("ParseTest1-4", parser.hasTag("c"));
     }
 
     private static void parseTest2() {
@@ -30,6 +30,13 @@ class Test {
         check("ParseTest2-2", parser.getValue("b"), "");
         check("ParseTest2-3", parser.getValue("c"), "lemon");
         check("ParseTest2-4", parser.getValue("d"), "");
+    }
+
+    private static void check(String msg, boolean a) {
+        if(a)
+            System.out.println(msg + ": OK");
+        else
+            System.out.println(msg + ": NG");
     }
 
     private static <T> void check(String msg, T a, T b) {
