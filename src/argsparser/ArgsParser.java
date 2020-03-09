@@ -2,7 +2,6 @@ package argsparser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.management.BadStringOperationException;
 
 /**
  * ArgsParser
@@ -46,22 +45,6 @@ public class ArgsParser {
                     outOfGroup.add(arg);
                 }
             }
-        }
-    }
-
-    /**
-     * 接頭語を除いた文字列を返す
-     * 対象文字列がprefixから始まらない場合は例外を投げる
-     *
-     * @param target 対象文字列
-     * @param prefix 接頭語
-     * @throws BadStringOperationException
-     */
-    private String exclusionPrefix(String target, String prefix) throws BadStringOperationException {
-        if(target.startsWith(prefix)) {
-            return exclusionPrefix(target, prefix.length());
-        } else {
-            throw new BadStringOperationException("\"target("+target+")\" no match \"prefix("+prefix+")\"");
         }
     }
 
